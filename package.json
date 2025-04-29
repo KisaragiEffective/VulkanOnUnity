@@ -1,0 +1,11 @@
+{
+  "name": "io.github.kisaragieffective.linux-vulkan-on-unity",
+  "version": "0.1.0",
+  "description": "Forces Render Backend to be Vulkan, even if there's VRChat's SDK.",
+  "displayName": "Vulkan on Linux for VRChat SDKs' Users",
+  "unity": "2022.3",
+  "author": "Kisaragi Marine <kisaragi.marine@gmail.com> (https://github.com/KisaragiEffective/)",
+  "documentationUrl": "https://github.com/KisaragiEffective/VulkanOnUnity",
+  "keywords": ["Linux", "Vulkan", "VRChat", "linux", "vulkan"],
+  "license": "BSD-4-Clause"
+}
