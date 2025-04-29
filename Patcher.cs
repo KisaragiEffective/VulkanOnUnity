@@ -43,7 +43,7 @@ namespace KisaragiMarine.LinuxVulkanOnUnity
 #endif
         }
 
-        public static bool SkipGraphicsAPIOverride()
+        private static bool SkipGraphicsAPIOverride()
         {
             Debug.Log("[VRCSDKForceVulkan] Skipping VRCSDK graphics API override (forcing Vulkan).");
             return false;
