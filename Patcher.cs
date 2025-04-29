@@ -10,9 +10,9 @@ using VRC.Editor;
 namespace KisaragiMarine.LinuxVulkanOnUnity
 {
     [InitializeOnLoad]
-    internal static class VRCSDKForceVulkan
+    internal static class Patcher
     {
-        static VRCSDKForceVulkan()
+        static Patcher()
         {
 #if LVU_HAS_VRCSDK3
             if (Application.platform != RuntimePlatform.LinuxEditor)
@@ -33,7 +33,7 @@ namespace KisaragiMarine.LinuxVulkanOnUnity
                     return;
                 }
 
-                harmony.Patch(method, prefix: new HarmonyMethod(typeof(VRCSDKForceVulkan), nameof(SkipGraphicsAPIOverride)));
+                harmony.Patch(method, prefix: new HarmonyMethod(typeof(Patcher), nameof(SkipGraphicsAPIOverride)));
                 Debug.Log("[VRCSDKForceVulkan] Successfully patched SetDefaultGraphicsAPIs.");
             }
             catch (Exception e)
