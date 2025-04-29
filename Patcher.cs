@@ -3,7 +3,9 @@ using System.Reflection;
 using HarmonyLib;
 using UnityEditor;
 using UnityEngine;
+#if LVU_HAS_VRCSDK3
 using VRC.Editor;
+#endif
 
 namespace KisaragiMarine.LinuxVulkanOnUnity
 {
@@ -12,6 +14,7 @@ namespace KisaragiMarine.LinuxVulkanOnUnity
     {
         static VRCSDKForceVulkan()
         {
+#if LVU_HAS_VRCSDK3
             if (Application.platform != RuntimePlatform.LinuxEditor)
             {
                 Debug.Log("[VRCSDKForceVulkan] Not running on Linux Editor, skipping patch.");
@@ -37,6 +40,7 @@ namespace KisaragiMarine.LinuxVulkanOnUnity
             {
                 Debug.LogError("[VRCSDKForceVulkan] Failed to patch: " + e);
             }
+#endif
         }
 
         public static bool SkipGraphicsAPIOverride()
