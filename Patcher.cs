@@ -3,15 +3,18 @@ using System.Reflection;
 using HarmonyLib;
 using UnityEditor;
 using UnityEngine;
+#if LVU_HAS_VRCSDK3
 using VRC.Editor;
+#endif
 
 namespace KisaragiMarine.LinuxVulkanOnUnity
 {
     [InitializeOnLoad]
-    internal static class VRCSDKForceVulkan
+    internal static class Patcher
     {
-        static VRCSDKForceVulkan()
+        static Patcher()
         {
+#if LVU_HAS_VRCSDK3
             if (Application.platform != RuntimePlatform.LinuxEditor)
             {
                 Debug.Log("[VRCSDKForceVulkan] Not running on Linux Editor, skipping patch.");
@@ -30,16 +33,17 @@ namespace KisaragiMarine.LinuxVulkanOnUnity
                     return;
                 }
 
-                harmony.Patch(method, prefix: new HarmonyMethod(typeof(VRCSDKForceVulkan), nameof(SkipGraphicsAPIOverride)));
+                harmony.Patch(method, prefix: new HarmonyMethod(typeof(Patcher), nameof(SkipGraphicsAPIOverride)));
                 Debug.Log("[VRCSDKForceVulkan] Successfully patched SetDefaultGraphicsAPIs.");
             }
             catch (Exception e)
             {
                 Debug.LogError("[VRCSDKForceVulkan] Failed to patch: " + e);
             }
+#endif
         }
 
-        public static bool SkipGraphicsAPIOverride()
+        private static bool SkipGraphicsAPIOverride()
         {
             Debug.Log("[VRCSDKForceVulkan] Skipping VRCSDK graphics API override (forcing Vulkan).");
             return false;
