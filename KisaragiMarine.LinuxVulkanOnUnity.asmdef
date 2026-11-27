@@ -16,7 +16,7 @@
     "versionDefines": [
         {
             "name": "com.vrchat.base",
-            "expression": "[3.5.0,3.7.5]",
+            "expression": "[3.5.0,3.10.6]",
             "define": "LVU_HAS_VRCSDK3"
         }
     ],
